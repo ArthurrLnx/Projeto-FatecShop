@@ -1,0 +1,266 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 3px solid darkred;
+    background-color: white;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.titulo {
+    font-size: 32px;
+    font-weight: bold;
+    color: darkred;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.titulo span {
+    color: #333;
+}
+
+h2{
+    text-align: center;
+    font-size: 30;
+}
+
+h3{
+    text-align: center;
+    color: darkred;
+    font-size: 30;
+}
+
+.promo a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.promo a:hover {
+    color: darkred;
+}
+
+nav {
+    background-color: darkred;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: all 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: white;
+    color: darkred;
+    border-radius: 3px;
+}
+
+.lista-produtos-simples {
+    max-width: 300px;
+    margin: 20px auto;
+    text-align: left;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+}
+
+.produtos-container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: gray;
+}
+
+.produtos {
+    border: 1px solid #ddd;
+    padding: 15px;
+    background: white;
+    text-align: center;
+    width: 250px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.produtos img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin: 10px 0;
+}
+
+.produtos h3 {
+    color: darkred;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.produtos-descricao {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.produtos-preco {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 15px 0;
+}
+
+.produtos button {
+    background-color: darkred;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.produtos button:hover {
+    background-color: #a52a2a;
+}
+
+.promocoes {
+    padding: 20px;
+    background-color: gray;
+    margin-top: 20px;
+    border: 2px solid #242424;
+    border-radius: 8%;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.social-icons {
+    margin-bottom: 15px;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
+.lista-produtos2-simples {
+    max-width: 300px;
+    margin: 20px auto;
+    text-align: left;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+}
+
+.produtos2-container {
+    display: flex;
+    justify-content: center;
+    gap: 300px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: gray;
+}
+
+.produtos2 {
+    border: 1px solid #ddd;
+    padding: 15px;
+    background: white;
+    text-align: center;
+    width: 250px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.produtos2 img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin: 10px 0;
+}
+
+.produtos2 h3 {
+    color: darkred;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.produtos2-descricao {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.produtos2-preco {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 15px 0;
+}
+
+.produtos2 button {
+    background-color: darkred;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.produtos2 button:hover {
+    background-color: #a52a2a;
+}

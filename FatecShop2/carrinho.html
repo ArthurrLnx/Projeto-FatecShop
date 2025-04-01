@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - FatecShop</title>
+    <link rel="stylesheet" href="carrinho.css">
+    <link rel="icon" href="img/favicon.ico" type="img/favicon">
+</head>
+
+<script>
+    // Função para carregar o carrinho
+    function carregarCarrinho() {
+        const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+        const container = document.getElementById('itens-carrinho');
+        const subtotalElement = document.querySelector('.subtotal');
+        const totalElement = document.querySelector('.valor-total');
+        const btnFinalizar = document.getElementById('btn-finalizar');
+        
+        if (carrinho.length === 0) {
+            container.innerHTML = `
+                <div class="carrinho-vazio">
+                    <p>Seu carrinho está vazio</p>
+                    <a href="produtos.html" class="btn-continuar">Continuar Comprando</a>
+                </div>
+            `;
+            subtotalElement.textContent = 'R$ 0,00';
+            totalElement.textContent = 'R$ 0,00';
+            btnFinalizar.disabled = true;
+            return;
+        }
+        
+        let html = '';
+        let subtotal = 0;
+        
+        carrinho.forEach((item, index) => {
+            const precoNumerico = parseFloat(item.preco.replace('R$ ', '').replace(',', '.'));
+            subtotal += precoNumerico * item.quantidade;
+            
+            html += `
+                <div class="item-carrinho" data-index="${index}">
+                    <div class="item-info">
+                        <img src="${item.imagem}" alt="${item.nome}">
+                        <div>
+                            <h4>${item.nome}</h4>
+                            <p>${item.descricao}</p>
+                            <p class="produto-preco">${item.preco}</p>
+                        </div>
+                    </div>
+                    <div class="item-controles">
+                        <button class="btn-diminuir">-</button>
+                        <span class="quantidade">${item.quantidade}</span>
+                        <button class="btn-aumentar">+</button>
+                        <button class="btn-remover">Remover</button>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+        
+        // Formatar valores monetários
+        const subtotalFormatado = subtotal.toFixed(2).replace('.', ',');
+        subtotalElement.textContent = `R$ ${subtotalFormatado}`;
+        totalElement.textContent = `R$ ${subtotalFormatado}`;
+        
+        btnFinalizar.disabled = false;
+        
+        // Adicionar event listeners para os botões
+        document.querySelectorAll('.btn-diminuir').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = this.closest('.item-carrinho').dataset.index;
+                diminuirQuantidade(index);
+            });
+        });
+        
+        document.querySelectorAll('.btn-aumentar').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = this.closest('.item-carrinho').dataset.index;
+                aumentarQuantidade(index);
+            });
+        });
+        
+        document.querySelectorAll('.btn-remover').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = this.closest('.item-carrinho').dataset.index;
+                removerItem(index);
+            });
+        });
+    }
+    
+    // Funções para manipular o carrinho
+    function diminuirQuantidade(index) {
+        const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+        if (carrinho[index].quantidade > 1) {
+            carrinho[index].quantidade--;
+            sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+            carregarCarrinho();
+        }
+    }
+    
+    function aumentarQuantidade(index) {
+        const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+        carrinho[index].quantidade++;
+        sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+        carregarCarrinho();
+    }
+    
+    function removerItem(index) {
+        const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+        carrinho.splice(index, 1);
+        sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+        carregarCarrinho();
+    }
+    
+    // Event listener para o botão Finalizar Compra
+    document.getElementById('btn-finalizar')?.addEventListener('click', function() {
+        alert('Compra finalizada com sucesso!');
+        sessionStorage.removeItem('carrinho');
+        carregarCarrinho();
+    });
+    
+    // Carregar o carrinho quando a página for carregada
+    document.addEventListener('DOMContentLoaded', carregarCarrinho);
+</script>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/fatec.jpeg" alt="Logo FatecShop">
+        </div>
+        <div class="titulo">Fatec<span>Shop</span></div>
+        <div class="promo"><a href="#">Tudo mais barato!</a></div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="carrinho.html">Carrinho</a></li>
+            <li><a href="sobrenos.html">Sobre nós</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Seu Carrinho de Compras</h2>
+        
+        <div class="carrinho-container">
+            <div class="itens-carrinho" id="itens-carrinho">
+                <div class="carrinho-vazio">
+                    <p>Seu carrinho está vazio</p>
+                    <a href="produtos.html" class="btn-continuar">Continuar Comprando</a>
+                </div>
+            </div>
+            
+            <div class="resumo-carrinho">
+                <h3>Resumo do Pedido</h3>
+                <div class="resumo-detalhes">
+                    <div class="resumo-linha">
+                        <span>Subtotal:</span>
+                        <span class="subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="resumo-linha">
+                        <span>Frete:</span>
+                        <span class="frete">Grátis</span>
+                    </div>
+                    <div class="resumo-linha total">
+                        <span>Total:</span>
+                        <span class="valor-total">R$ 0,00</span>
+                    </div>
+                </div>
+                <button class="btn-finalizar" id="btn-finalizar" disabled>Finalizar Compra</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="social-icons">
+            <img src="img/facebook.svg" alt="Facebook">
+            <img src="img/instagram.svg" alt="Instagram">
+            <img src="img/tiktok.svg" alt="TikTok">
+        </div>
+        <p>Av. Presidente Vargas, 2331 - Garça - SP</p>
+    </footer>
+
+</body>
+</html>

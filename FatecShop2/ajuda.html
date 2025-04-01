@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuda - FatecShop</title>
+    <link rel="stylesheet" href="ajuda.css">
+    <link rel="icon" href="img/favicon.ico" type="img/favicon">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/fatec.jpeg" alt="Logo FatecShop">
+        </div>
+        <div class="titulo">Fatec<span>Shop</span></div>
+        <div class="promo"><a href="#">Tudo mais barato!</a></div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="carrinho.html">Carrinho</a></li>
+            <li><a href="sobrenos.html">Sobre nós</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="ajuda-container">
+            <h2>Central de Ajuda</h2>
+            
+            <div class="faq">
+                <h3>Perguntas Frequentes</h3>
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        Como faço para comprar?
+                        <span class="icone">+</span>
+                    </button>
+                    <div class="faq-resposta">
+                        <p>Navegue pelos produtos, clique em "Adicionar ao Carrinho" e finalize no carrinho de compras.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        Quais são as formas de pagamento?
+                        <span class="icone">+</span>
+                    </button>
+                    <div class="faq-resposta">
+                        <p>Aceitamos cartões de crédito, débito, PIX e boleto bancário.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        Qual o prazo de entrega?
+                        <span class="icone">+</span>
+                    </button>
+                    <div class="faq-resposta">
+                        <p>O prazo varia conforme sua localização. Em média, de 3 a 7 dias úteis.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        Como faço para rastrear meu pedido?
+                        <span class="icone">+</span>
+                    </button>
+                    <div class="faq-resposta">
+                        <p>Enviamos o código de rastreio por e-mail assim que o pedido é despachado.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contato">
+                <h3>Fale Conosco</h3>
+                <form class="form-contato">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="assunto">Assunto:</label>
+                        <select id="assunto" name="assunto">
+                            <option value="duvida">Dúvida</option>
+                            <option value="reclamacao">Reclamação</option>
+                            <option value="sugestao">Sugestão</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="social-icons">
+            <img src="img/facebook.svg" alt="Facebook">
+            <img src="img/instagram.svg" alt="Instagram">
+            <img src="img/tiktok.svg" alt="TikTok">
+        </div>
+        <p>Av. Presidente Vargas, 2331 - Garça - SP</p>
+    </footer>
+
+    <script>
+        // Script do FAQ
+        document.querySelectorAll('.faq-pergunta').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentNode;
+                const resposta = faqItem.querySelector('.faq-resposta');
+                const icone = button.querySelector('.icone');
+                
+                // Alternar a classe 'ativo' no item do FAQ
+                faqItem.classList.toggle('ativo');
+                
+                // Alternar entre '+' e '-'
+                if (faqItem.classList.contains('ativo')) {
+                    resposta.style.maxHeight = resposta.scrollHeight + 'px';
+                    icone.textContent = '-';
+                } else {
+                    resposta.style.maxHeight = 0;
+                    icone.textContent = '+';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

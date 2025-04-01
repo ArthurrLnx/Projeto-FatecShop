@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FatecShop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/favicon.ico" type="img/favicon">
+</head>
+
+<script>
+    // Função para adicionar produto ao carrinho
+    function adicionarAoCarrinho(event) {
+        const produto = event.target.closest('.produtos, .produtos2');
+        const nome = produto.querySelector('h3').textContent;
+        const imagem = produto.querySelector('img').src;
+        const descricao = produto.querySelector('.produto-descricao').textContent;
+        let preco = produto.querySelector('.produto-preco').textContent;
+        
+        // Trata preços promocionais (pega o último preço)
+        if (preco.includes('Por')) {
+            preco = preco.split('Por ')[1];
+        }
+        
+        const item = {
+            nome,
+            imagem,
+            descricao,
+            preco,
+            quantidade: 1
+        };
+        
+        // Obter carrinho atual ou criar um novo
+        const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+        
+        // Verificar se o item já está no carrinho
+        const itemExistente = carrinho.find(i => i.nome === nome && i.preco === preco);
+        
+        if (itemExistente) {
+            itemExistente.quantidade++;
+        } else {
+            carrinho.push(item);
+        }
+        
+        // Salvar no sessionStorage
+        sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+        
+        // Feedback visual
+        const btn = event.target;
+        btn.textContent = 'Adicionado!';
+        btn.style.backgroundColor = '#4CAF50';
+        
+        setTimeout(() => {
+            btn.textContent = 'Adicionar ao Carrinho';
+            btn.style.backgroundColor = '';
+        }, 1000);
+    }
+    
+    // Função para carregar o carrinho (mantida para consistência)
+    function carregarCarrinho() {
+        const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+        // Esta função é mais relevante na página carrinho.html
+    }
+    
+    // Adicionar event listeners aos botões quando a página carregar
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.produtos button, .produtos2 button').forEach(btn => {
+            btn.addEventListener('click', adicionarAoCarrinho);
+        });
+        
+        carregarCarrinho();
+    });
+</script>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/fatec.jpeg" alt="">
+        </div>
+        <div class="titulo">Fatec<span>Shop</span></div>
+        <div class="promo"><a href="#">Tudo mais barato!</a></div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html ">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="carrinho.html">Carrinho</a></li>
+            <li><a href="sobrenos.html">Sobre nós</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+    </nav>
+    <main>
+    <h2>Seja bem-vindo(a) ao melhor site de técnologia!</h2>
+        <h3>Lançamentos</h3>
+    <div class="produtos2-container">
+        <div class="produtos2">
+            <h3>Impressora</h3>
+            <img src="img/impressora.jpg" alt="Impressora">
+            <p class="produto-descricao">Impressora multifuncional com alta qualidade de impressão.</p>
+            <p class="produto-preco">R$ 499,90</p>
+            <button>Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produtos2">
+            <h3>Notebook</h3>
+            <img src="img/notebook.png" alt="Notebook">
+            <p class="produto-descricao">Notebook com processador rápido e tela Full HD.</p>
+            <p class="produto-preco">R$ 2.799,90</p>
+            <button>Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produtos2">
+            <h3>Pendrive</h3>
+            <img src="img/pendrive.jpg" alt="Pendrive">
+            <p class="produto-descricao">Pendrive 64GB USB 3.0, alta velocidade de transferência.</p>
+            <p class="produto-preco">R$ 59,90</p>
+            <button>Adicionar ao Carrinho</button>
+        </div>
+    </div>
+        </section>
+        <h3>Promoções</h3>
+        <div class="produtos-container">
+            <div class="produtos">
+                <h3>Cabo HDMI</h3>
+                <img src="img/cabo10m_1.png" alt="Cabo HDMI 10M">
+                <p class="produto-descricao">Cabo HDMI 10m</p>
+                <p class="produto-preco">De R$ 4̶9̶,̶9̶0<br>
+                                        Por R$ 39,90</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+    
+            <div class="produtos">
+                <h3>Webcam</h3>
+                <img src="img/webcam.png" alt="Webcam">
+                <p class="produto-descricao">Notebook com processador rápido e tela Full HD.</p>
+                <p class="produto-preco">De R$  ̶1̶9̶9̶̶̶,̶̶̶9̶̶̶0<br>
+                                        Por R$ 124,90</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="produtos">
+                <h3>Celular</h3>
+                <img src="img/celular.png" alt="Celular">
+                <p class="produto-descricao">Pendrive 64GB USB 3.0, alta velocidade de transferência.</p>
+                <p class="produto-preco">De R$  ̶2̶.̶1̶6̶0̶,̶0̶0<br>
+                                        Por R$ 1.910,90</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="produtos">
+                <h3>Mouse</h3>
+                <img src="img/mouse.png" alt="Mouse">
+                <p class="produto-descricao">Pendrive 64GB USB 3.0, alta velocidade de transferência.</p>
+                <p class="produto-preco">De R$  ̶1̶3̶4̶,̶9̶0<br>
+                                        Por R$  109,90</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+    
+            <div class="produtos">
+                <h3>Roteador</h3>
+                <img src="img/roteador.png" alt="Roteador">
+                <p class="produto-descricao">Pendrive 64GB USB 3.0, alta velocidade de transferência.</p>
+                <p class="produto-preco">De R$  ̶2̶3̶1̶,̶9̶0̶<br>
+                                        Por R$  199,90</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="social-icons">
+            <img src="img/facebook.svg" alt="Facebook">
+            <img src="img/instagram.svg" alt="Instagram">
+            <img src="img/tiktok.svg" alt="TikTok">
+        </div>
+        <p>Av. Presidente Vargas, 2331 - Garça - SP</p>
+    </footer>
+</body>
+</html>
