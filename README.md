@@ -1,5 +1,3 @@
-#FatecShop - Projeto de E-commerce
-
 # 📋 Descrição
 O FatecShop é um projeto de e-commerce desenvolvido como parte do currículo da Fatec. Este repositório contém a versão 2.0 do projeto, com melhorias significativas em relação à versão anterior.
 
